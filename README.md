@@ -1,2 +1,2 @@
-# Lab_wide_scripts
+# Lab Wide Scripts
 Scripts for general computing work done in the Fishman lab. 
