@@ -71,8 +71,8 @@
         #paste the accession # column into this list (you may have to remove some hyperlinks). 
 
 for n in `${num}` #this is the setup for a "for loop", computer talk saying "for everything in this list do...."
-do echo ${n}; #This first step echos the accession number the program is currently working on. It acts as a way to
-#check progress while the script is running. 
+`do echo ${n};` This first step echos the accession number the program is currently working on. It acts as a way to
+check progress while the script is running. 
 ${directory}fasterq-dump ${n} --split-files; #This is the command that
 #fetches the sequence data. The usage for fasterq-dump is 'fasterq-dump SRAaccession options'. The ${n} represents 
 #the current SRA accession number the program is working on, and will be auto filled as it runs. For this script 
