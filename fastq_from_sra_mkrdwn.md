@@ -1,36 +1,21 @@
-#This script is designed to go collect sequencing reads from the SRA, download them as F and R fastqs and then
-#zip (compress) them into fastq.gz files. 
+This script is designed to go collect sequencing reads from the SRA, download them as F and R fastqs and then zip (compress) them into fastq.gz files. 
 
 # BACKGROUND
-    The SRA is the "Sequence Read Archives" a public online repository for sequencing data run by the NIH. No account
-     is needed to download sequences from the SRA (one is required for data upload) and it is free! Within the SRA
-    there are projects, experiments, and runs all with metadata about where, when, and on what instruments sequencing
-     was done. Make sure to be familiar with any project you are pulling sequencing from! 
+    The SRA is the "Sequence Read Archives" a public online repository for sequencing data run by the NIH. No account is needed to download sequences from the SRA (one is required for data upload) and it is free! Within the SRA there are projects, experiments, and runs all with metadata about where, when, and on what instruments sequencing was done. Make sure to be familiar with any project you are pulling sequencing from! 
 
-    There are multiple types of SRA accession number prefixes (a unique number assigned to each run/experiment/paper etc...) 
-    so familiarize yourself with the differences here https://www.ncbi.nlm.nih.gov/books/NBK569234/#srch_Understand_SRA.what_do_the_differen
-    The most common accession prefixes seen in downloaded sequence are SRR####### and SRX#######. SRX represents an 
-    experiment accession whereas SRR represents a run accession. SRR's are the actual runs with sequencing data whereas 
-    SRX accessions may contain multliple SRR runs (i.e., multiple sequencing runs for one experiment). 
+    There are multiple types of SRA accession number prefixes (a unique number assigned to each run/experiment/paper etc...) so familiarize yourself with the differences [here](https://www.ncbi.nlm.nih.gov/books/NBK569234/#srch_Understand_SRA.what_do_the_differen) The most common accession prefixes seen in downloaded sequence are SRR####### and SRX#######. SRX represents an experiment accession whereas SRR represents a run accession. SRR's are the actual runs with sequencing data whereas SRX accessions may contain multliple SRR runs (i.e., multiple sequencing runs for one experiment). 
 
-# GENERAL QUALITY CONTROL ADVICE###    Always know where the sequence is coming from! Check that the SRA project you are pulling from is actually the
-    paper/experiment you think it is, sometimes accessions aren't reported accurately.
+# GENERAL QUALITY CONTROL ADVICE
+    Always know where the sequence is coming from! Check that the SRA project you are pulling from is actually the paper/experiment you think it is, sometimes accessions aren't reported accurately.
 
-    Ensure you have a solid internet connection or make sure you have set up the download process in such a way
-    that it wont be disturbed. Downloading hundreds of sequences for a new analysis can take a while so if you 
-    are running a batch of sequence downloading overnight, make sure you can safely close/shut down your computer
-    without disturbing the download (i.e., submit job to server node, or run in a screen).
+    Ensure you have a solid internet connection or make sure you have set up the download process in such a way that it wont be disturbed. Downloading hundreds of sequences for a new analysis can take a while so if you are running a batch of sequence downloading overnight, make sure you can safely close/shut down your computer without disturbing the download (i.e., submit job to server node, or run in a screen).
     
-    Check file sizes before and after download. Triple check to make sure that the entire file was downloaded, having
-    truncated sequencing files can cause downstream problems very quickly. If you are running a large batch overnight
-    be sure to check the downloaded file sizes the next morning to ensure nothing shorted out/stopped. 
+    Check file sizes before and after download. Triple check to make sure that the entire file was downloaded, having truncated sequencing files can cause downstream problems very quickly. If you are running a large batch overnight be sure to check the downloaded file sizes the next morning to ensure nothing shorted out/stopped. 
 
 # ABOUT THE SCRIPT###
-    This script is a "for loop" with three commands. For each item in the list (your SRA accession numbers of interest) this 
-    script will retrieve the sequence data, split it into F and R reads, and compress the files so you will be left with
-    SRR#######_1.fastq.gz (forward read) and SRR#######_2.fastq.gz (reverse read) files for each accession number in the list.
-    The "fasterq-dump" command from the SRA toolkit (manual here https://github.com/ncbi/sra-tools/wiki/HowTo:-fasterq-dump)
-    is the command that retrieves the sequencing data, then two gzip commands compress the _1.fastq.gz and _2.fastq.gz files
+    This script is a "for loop" with three commands. For each item in the list (your SRA accession numbers of interest) this script will retrieve the sequence data, split it into F and R reads, and compress the files so you will be left with `SRR#######_1.fastq.gz` (forward read) and `SRR#######_2.fastq.gz` (reverse read) files for each accession number in the list.
+    The "fasterq-dump" command from the SRA toolkit (manual [here](https://github.com/ncbi/sra-tools/wiki/HowTo:-fasterq-dump))
+    is the command that retrieves the sequencing data, then two gzip commands compress the `_1.fastq.gz` and `_2.fastq.gz` files
     individually. 
 
 `directory= path/to/where/fastq-dump/lives/`
