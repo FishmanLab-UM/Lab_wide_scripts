@@ -1,1 +1,0 @@
-for i in *filtered.bam; do samtools sort $i > ${i:0:-4}.sort.bam; done
