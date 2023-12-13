@@ -1,0 +1,1 @@
+for i in *rmdup.filtered.bam; do /home/colette_berg/resources/packages/gatk-4.2.6.1/gatk SplitNCigarReads -R /home/andrew_demaree/RNASeq/pseudoreference/MguttatusV2refmtcp_IM62_SF5_pseudo.fa -I $i -O ${i:0:-4}.split.bam; done

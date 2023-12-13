@@ -1,0 +1,1 @@
+for i in *_R1_001.paired.fastq; do /home/andrew_demaree/STAR/STAR/bin/Linux_x86_64/STAR --runThreadN 8 --genomeDir /home/andrew_demaree/RNASeq/GenomeDir/ --readFilesIn ${i:0:-19}R1_001.paired.fastq ${i:0:-19}R2_001.paired.fastq --outFilterMultimapNmax 2 --outMultimapperOrder Random --outFileNamePrefix ${i:0:-12}; done

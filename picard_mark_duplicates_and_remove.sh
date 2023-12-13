@@ -1,0 +1,1 @@
+for i in *.sort.bam; do java -jar /home/thom_nelson/opt/picard.jar MarkDuplicates INPUT=$i OUTPUT=${i:0:-4}.rmdup.filtered.bam METRICS_FILE=${i:0:-4}.rmdup_metrics_fix VALIDATION_STRINGENCY=LENIENT REMOVE_DUPLICATES=TRUE REMOVE_SEQUENCING_DUPLICATES=TRUE; done

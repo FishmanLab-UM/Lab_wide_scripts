@@ -1,0 +1,1 @@
+for i in *.split.bam; do samtools view -b -q 20 -o ${i:0:-4}.q20.bam $i;done
